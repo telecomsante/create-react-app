@@ -91,14 +91,20 @@ module.exports = function(
   // Copy over some of the devDependencies
   appPackage.dependencies = appPackage.dependencies || {};
 
+  // set the homepage to './' as the site is delivered from files
+  appPackage.homepage = './';
+  
   const useTypeScript = appPackage.dependencies['typescript'] != null;
 
   // Setup the script rules
   appPackage.scripts = {
-    start: 'react-scripts start',
-    build: 'react-scripts build',
+    start: "concurrently \"yarn start:react\" \"yarn emulate\"",
+    'start:react': 'react-scripts start',
+    'build:react': 'react-scripts build',
     test: 'react-scripts test',
     eject: 'react-scripts eject',
+    emulate: "node config.js --local && cordova emulate android",
+    device: "node config.js && cordova run android"
   };
 
   // Setup the eslint config
@@ -219,15 +225,25 @@ module.exports = function(
 
   console.log();
   console.log(`Success! Created ${appName} at ${appPath}`);
+  console.log(chalk.green(`Cordova Create-React-App`));
   console.log('Inside that directory, you can run several commands:');
   console.log();
+  console.log(chalk.cyan(`  cordova platform add [android|ios] --save`));
+  console.log('    Adds a platform to cordova');
+  console.log();
+  console.log(chalk.cyan(`  ${displayedCommand} start:react`));
+  console.log('    Starts the react development server.');
+  console.log();
+  console.log(chalk.cyan(`  ${displayedCommand} emulate`));
+  console.log('    Starts the android emulator.');
+  console.log();
   console.log(chalk.cyan(`  ${displayedCommand} start`));
-  console.log('    Starts the development server.');
+  console.log('    Starts the react development server and run the emulator.');
   console.log();
   console.log(
-    chalk.cyan(`  ${displayedCommand} ${useYarn ? '' : 'run '}build`)
+    chalk.cyan(`  ${displayedCommand} ${useYarn ? '' : 'run '}build:react`)
   );
-  console.log('    Bundles the app into static files for production.');
+  console.log('    Bundles the react app into static files for production.');
   console.log();
   console.log(chalk.cyan(`  ${displayedCommand} test`));
   console.log('    Starts the test runner.');
