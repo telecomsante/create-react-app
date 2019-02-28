@@ -1,10 +1,61 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project uses custom react-scripts from [@zedesk.net/cordova-react-scripts](https://www.npmjs.com/package/@zedesk/cordova-react-scripts)
+
+## Custom template
+
+This project aims to prepare your project to run with cordova
+
+Cordova must be installed in your environement :
+
+```bash
+npm i cordova -g
+```
+
+As usual with create-react-app, the source code of the application is located in the `src` directory.
+
+Running `yarn build` will build the application into the `www` folder, which is the base directory for a cordova app.
+
+adding platform :
+
+```bash
+cordova platform add android --save
+```
+
+You must define at least one emulator into Android Studio.
+
+### Hot reload mode
+
+To allow hot reload, modify the config.xml file by adding the url of the react dev server as source of the content tag.
+
+For example :
+
+```xml
+<content src="http://192.168.0.1:3000" />
+```
+
+then start the react dev server, then cordova
+
+```bash
+yarn start
+rm -rf www/*
+cordova emulate android
+```
 
 ## Available Scripts
 
 In the project directory, you can run:
 
 ### `npm start`
+
+Runs the app in development mode on android emulator. It starts the react dev server and the android emulator.
+
+### `npm run emulate`
+
+Start the android emulator.
+
+This script expects that the react dev server is running on the local machine on port 3000
+
+### `npm start:react`
 
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -17,15 +68,33 @@ You will also see any lint errors in the console.
 Launches the test runner in the interactive watch mode.<br>
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
+### `npm run build:release`
+
+build the release cordova application.
+
+This script builds first the react app, then the cordova app.
+
 ### `npm run build`
 
-Builds the app for production to the `build` folder.<br>
+build the cordova application in debug mode.
+
+This script builds first the react app, then the cordova app.
+
+### `npm run build:react`
+
+Builds the app for production to the `www` folder.<br>
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
 The build is minified and the filenames include the hashes.<br>
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `npm run build:cordova`
+
+Build the cordova app in debug mode.
+
+The react app must have previously be builded and production files must be present in the `www` folder.
 
 ### `npm run eject`
 

@@ -8,6 +8,8 @@ cordova must be installed :
 npm i cordova -g
 ```
 
+As prerequisite you must have nodejs version 10 or above installed and have already create a emulator into Android Studio
+
 to use it :
 
 ```bash

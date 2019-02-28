@@ -98,8 +98,11 @@ module.exports = function(
 
   // Setup the script rules
   appPackage.scripts = {
-    start: "concurrently \"yarn start:react\" \"yarn emulate\"",
+    start: 'concurrently \"yarn start:react\" \"yarn emulate\"',
     'start:react': 'react-scripts start',
+    build: 'npm run build:react && npm run build:cordova',
+    'build:release': 'npm run build:react && npm run build:cordova -- --release',
+    'build:cordova': 'cordova build',
     'build:react': 'react-scripts build',
     test: 'react-scripts test',
     eject: 'react-scripts eject',
