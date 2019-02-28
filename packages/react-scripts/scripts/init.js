@@ -173,7 +173,7 @@ module.exports = function(
     command = 'npm';
     args = ['install', '--save', verbose && '--verbose'].filter(e => e);
   }
-  args.push('react', 'react-dom', 'concurrently', 'local-ipv4-address', 'yargs');
+  args.push('react', 'react-dom');
 
   // Install additional template dependencies, if present
   const templateDependenciesPath = path.join(
@@ -195,6 +195,27 @@ module.exports = function(
   // or template is presetend (via --internal-testing-template)
   if (!isReactInstalled(appPackage) || template) {
     console.log(`Installing react and react-dom using ${command}...`);
+    console.log();
+
+    const proc = spawn.sync(command, args, { stdio: 'inherit' });
+    if (proc.status !== 0) {
+      console.error(`\`${command} ${args.join(' ')}\` failed`);
+      return;
+    }
+  }
+
+  // install devDependencies
+  if (useYarn) {
+    command = 'yarnpkg';
+    args = ['add', '-D'];
+  } else {
+    command = 'npm';
+    args = ['install', '-D', verbose && '--verbose'].filter(e => e);
+  }
+  args.push('concurrently', 'local-ipv4-address', 'yargs')
+
+  {
+    console.log(`Installing devDependencies using ${command}...`);
     console.log();
 
     const proc = spawn.sync(command, args, { stdio: 'inherit' });
