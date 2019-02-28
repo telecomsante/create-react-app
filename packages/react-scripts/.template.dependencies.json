@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "concurrently": "^4.1.0",
-    "local-ipv4-address": "^0.0.2",
-    "yargs": "^13.2.1"
-  }
-}
