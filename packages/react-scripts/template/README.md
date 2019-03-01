@@ -1,5 +1,5 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-This project uses custom react-scripts from [@zedesk.net/cordova-react-scripts](https://www.npmjs.com/package/@zedesk/cordova-react-scripts)
+This project uses custom react-scripts from [@telecomsante/cordova-react-scripts](https://www.npmjs.com/package/@telecomsante/cordova-react-scripts)
 
 ## Custom template
 

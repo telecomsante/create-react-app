@@ -14,7 +14,7 @@ to use it :
 
 ```bash
 npx  create-react-app test-app \
-  --scripts-version @zedesk/cordova-react-scripts
+  --scripts-version @telecomsante/cordova-react-scripts
 cd test-app
 cordova platform add android
 yarn build

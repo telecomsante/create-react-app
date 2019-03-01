@@ -1,14 +1,14 @@
 {
-  "name": "@zedesk/cordova-react-scripts",
-  "version": "0.2.2",
+  "name": "@telecomsante/cordova-react-scripts",
+  "version": "0.2.3",
   "description": "Configuration and scripts for a Cordova project with Create React App .",
-  "repository": "zedesk/create-react-app",
+  "repository": "telecomsante/create-react-app",
   "license": "MIT",
   "engines": {
     "node": ">=6"
   },
   "bugs": {
-    "url": "https://github.com/zedesk/create-react-app/issues"
+    "url": "https://github.com/telecomsante/create-react-app/issues"
   },
   "files": [
     "bin",
